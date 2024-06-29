@@ -2,5 +2,8 @@
 *.patch
 *~
 .*.swp
+.gdb_history
+.gdbinit
 bin/
 obj/
+target.cmm
