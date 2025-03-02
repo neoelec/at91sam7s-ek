@@ -385,6 +385,7 @@ static unsigned char AT26_EraseChip(At26 *pAt26)
 /// \param pAt26  Pointer to an AT26 driver instance.
 /// \param address  Address of the block to erase.
 //------------------------------------------------------------------------------
+#if 0
 static unsigned char AT26_EraseBlock(At26 *pAt26, unsigned int address)
 {
     unsigned char status;
@@ -416,6 +417,7 @@ static unsigned char AT26_EraseBlock(At26 *pAt26, unsigned int address)
 
     return 0;
 }
+#endif
 
 //------------------------------------------------------------------------------
 /// Writes data at the specified address on the serial firmware dataflash. The

@@ -394,6 +394,7 @@ static unsigned char ButtonsMonitor(unsigned char *pBtnStatus,
 #endif
 
       // - Movment buttons, Joystick or Push buttons
+  #if  defined(JOYSTICK_LEFT) && defined(JOYSTICK_RIGHT)
       // Left
       if (PIO_Get(&pinsJoystick[JOYSTICK_LEFT]) == 0) {
 
@@ -409,6 +410,7 @@ static unsigned char ButtonsMonitor(unsigned char *pBtnStatus,
       else {
           *pDx = 0;
       }
+  #endif
 
 #if defined (PINS_JOYSTICK)
       // Up
@@ -697,7 +699,7 @@ void USBDCallbacks_Suspended(void)
 int main(void)
 {
     unsigned char bmButtons = 0;
-    signed char dX, dY;
+    signed char dX = 0, dY = 0;
     unsigned char isChanged;
 
     TRACE_CONFIGURE(DBGU_STANDARD, 115200, BOARD_MCK);

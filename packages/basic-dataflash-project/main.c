@@ -223,6 +223,7 @@ static void AT45_WaitReady(At45 *pAt45)
 /// Reads and returns the JEDEC identifier of a At45.
 /// \param pAt45  Pointer to a At45 driver instance.
 //------------------------------------------------------------------------------
+#if 0
 static unsigned int AT45_GetJedecId(At45 *pAt45)
 {
     unsigned char error;
@@ -240,6 +241,7 @@ static unsigned int AT45_GetJedecId(At45 *pAt45)
 
     return id;
 }
+#endif
 
 //------------------------------------------------------------------------------
 /// Reads data from the At45 inside the provided buffer. Since a continuous

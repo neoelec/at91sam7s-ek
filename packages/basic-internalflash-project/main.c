@@ -208,7 +208,7 @@ int main(void)
     for (i=0; i < (AT91C_IFLASH_PAGE_SIZE / 4); i++) {
 
         printf(".");
-        ASSERT(pLastPageData[i] == (1 << (i % 32)),
+        ASSERT(pLastPageData[i] == (1U << (i % 32)),
                "\n\r-F- Expected 0x%08X at address 0x%08X, found 0x%08X\n\r",
                (1 << (i % 32)), (unsigned int) &(pLastPageData[i]), pLastPageData[i]);
     }

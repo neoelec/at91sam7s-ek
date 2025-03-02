@@ -545,7 +545,7 @@ void USBDCallbacks_Suspended(void)
 //------------------------------------------------------------------------------
 /// Callback invoked when data has been received on the USB.
 //------------------------------------------------------------------------------
-static void UsbDataReceived(unsigned int unused,
+static void UsbDataReceived(void *unused,
                             unsigned char status,
                             unsigned int received,
                             unsigned int remaining)
@@ -612,7 +612,7 @@ static void ISR_Usart0()
         // Restart USB read
         CDCDSerialDriver_Read(usbBuffer,
                               DATABUFFERSIZE,
-                              (TransferCallback) UsbDataReceived,
+                              UsbDataReceived,
                               0);
         AT91C_BASE_US0->US_IDR = AT91C_US_TXBUFE;
     }
