@@ -129,7 +129,7 @@
 //         Local variables
 //------------------------------------------------------------------------------
 
- /// Pushbutton \#1 pin instance.
+/// Pushbutton \#1 pin instance.
 const Pin pinPB1 = PIN_PUSHBUTTON_1;
 
 /// Pushbutton \#1 pin instance.
@@ -183,12 +183,12 @@ void ConfigurePit(void)
 //------------------------------------------------------------------------------
 /// Interrupt handler for pushbutton\#1. Starts or stops LED\#1.
 //------------------------------------------------------------------------------
-void ISR_Bp1(void)
+void ISR_Bp1(const Pin *pPin)
 {
     static unsigned int lastPress = 0;
 
     // Check if the button has been pressed
-    if (!PIO_Get(&pinPB1)) {
+    if (!PIO_Get(pPin)) {
 
         // Simple debounce method: limit push frequency to 1/DEBOUNCE_TIME
         // (i.e. at least DEBOUNCE_TIME ms between each push)
@@ -209,12 +209,12 @@ void ISR_Bp1(void)
 //------------------------------------------------------------------------------
 /// Interrupt handler for pushbutton\#2. Starts or stops LED\#2 and TC0.
 //------------------------------------------------------------------------------
-void ISR_Bp2(void)
+void ISR_Bp2(const Pin *pPin)
 {
     static unsigned int lastPress = 0;
 
     // Check if the button has been pressed
-    if (!PIO_Get(&pinPB2)) {
+    if (!PIO_Get(pPin)) {
 
         // Simple debounce method: limit push frequency to 1/DEBOUNCE_TIME
         // (i.e. at least DEBOUNCE_TIME ms between each push)
@@ -261,8 +261,8 @@ void ConfigureButtons(void)
 
     // Initialize interrupts
     PIO_InitializeInterrupts(AT91C_AIC_PRIOR_LOWEST);
-    PIO_ConfigureIt(&pinPB1, (void (*)(const Pin *)) ISR_Bp1);
-    PIO_ConfigureIt(&pinPB2, (void (*)(const Pin *)) ISR_Bp2);
+    PIO_ConfigureIt(&pinPB1, ISR_Bp1);
+    PIO_ConfigureIt(&pinPB2, ISR_Bp2);
     PIO_EnableIt(&pinPB1);
     PIO_EnableIt(&pinPB2);
 }
