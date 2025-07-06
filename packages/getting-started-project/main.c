@@ -136,7 +136,7 @@ const Pin pinPB1 = PIN_PUSHBUTTON_1;
 const Pin pinPB2 = PIN_PUSHBUTTON_2;
 
 /// Indicates the current state (on or off) for each LED.
-unsigned char pLedStates[2] = {1, 1};
+volatile unsigned char pLedStates[2] = {1, 1};
 
 /// Global timestamp in milliseconds since start of application.
 volatile unsigned int timestamp = 0;
