@@ -2,5 +2,6 @@
 *.patch
 *~
 .*.swp
+.vscode/
 bin/
 obj/
